@@ -6,14 +6,18 @@ import PackageDescription
 let package = Package(
     name: "CustomNetworkPackage",
     products: [
+        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "CustomNetwork",
-            targets: ["CustomNetwork"]),
+            name: "CustomNetworkPackage",
+            targets: ["CustomNetworkPackage"]),
     ],
     targets: [
-        .binaryTarget(
-            name: "CustomNetwork",
-            path: "./CustomNetwork.xcframework"
-        ),
+        // Targets are the basic building blocks of a package, defining a module or a test suite.
+        // Targets can depend on other targets in this package and products from dependencies.
+        .target(
+            name: "CustomNetworkPackage"),
+        .testTarget(
+            name: "CustomNetworkPackageTests",
+            dependencies: ["CustomNetworkPackage"]),
     ]
 )
