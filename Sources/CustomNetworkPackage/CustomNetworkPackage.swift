@@ -1,8 +1,16 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
+
+protocol NetworkService {
+    func getRequest(url: String, bearerToken: String?, completion: @escaping (Data?, URLResponse?, Error?) -> Void)
+    func postRequest(url: String, body: Data?, bearerToken: String?, completion: @escaping (Data?, URLResponse?, Error?) -> Void)
+    func putRequest(url: String, body: Data?, bearerToken: String?, completion: @escaping (Data?, URLResponse?, Error?) -> Void)
+    func deleteRequest(url: String, bearerToken: String?, completion: @escaping (Data?, URLResponse?, Error?) -> Void)
+}
+
 import Foundation
 
-public class CustomNetworkPackage {
+public class CustomNetworkPackage: NetworkService {
     
     public static let shared = CustomNetworkPackage()
     private init() {}
